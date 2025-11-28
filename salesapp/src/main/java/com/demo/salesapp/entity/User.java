@@ -1,6 +1,7 @@
 package com.demo.salesapp.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.*;
 import org.springframework.data.annotation.AccessType;
 
@@ -16,8 +17,11 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     String id;
+    @Column(unique = true, nullable = false)
     String username;
+    @Column(nullable = false)
     String password;
+    @Column(unique = true, nullable = false)
     String email;
     String phone;
     String firstName;

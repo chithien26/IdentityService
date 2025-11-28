@@ -1,11 +1,11 @@
 package com.demo.salesapp.controller;
 
-import com.demo.salesapp.dto.ApiResponse;
-import com.demo.salesapp.dto.CreateUserRequest;
+import com.demo.salesapp.dto.response.ApiResponse;
+import com.demo.salesapp.dto.request.CreateUserRequest;
 import com.demo.salesapp.entity.User;
 import com.demo.salesapp.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,7 +27,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ApiResponse<User> createUser(@RequestBody CreateUserRequest createUserRequest) {
+    public ApiResponse<User> createUser(@Valid @RequestBody CreateUserRequest createUserRequest) {
         return new ApiResponse<>(201, "User Created", userService.createUser(createUserRequest));
     }
 }
