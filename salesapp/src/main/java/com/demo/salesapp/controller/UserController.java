@@ -1,7 +1,8 @@
 package com.demo.salesapp.controller;
 
+import com.demo.salesapp.dto.request.UserUpdateRequest;
 import com.demo.salesapp.dto.response.ApiResponse;
-import com.demo.salesapp.dto.request.CreateUserRequest;
+import com.demo.salesapp.dto.request.UserCreateRequest;
 import com.demo.salesapp.entity.User;
 import com.demo.salesapp.service.UserService;
 import jakarta.validation.Valid;
@@ -27,7 +28,12 @@ public class UserController {
     }
 
     @PostMapping
-    public ApiResponse<User> createUser(@Valid @RequestBody CreateUserRequest createUserRequest) {
-        return new ApiResponse<>(201, "User Created", userService.createUser(createUserRequest));
+    public ApiResponse<User> createUser(@Valid @RequestBody UserCreateRequest userCreateRequest) {
+        return new ApiResponse<>(201, "User Created", userService.createUser(userCreateRequest));
+    }
+
+    @PatchMapping("/{user_id}")
+    public  ApiResponse<User> updateUser(@PathVariable("user_id") String user_id, @Valid @RequestBody UserUpdateRequest userUpdateRequest) {
+        return  new ApiResponse<>(200, "User Updated", userService.updateUser(user_id, userUpdateRequest));
     }
 }

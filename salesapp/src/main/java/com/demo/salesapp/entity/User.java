@@ -3,6 +3,7 @@ package com.demo.salesapp.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.*;
+import lombok.experimental.FieldDefaults;
 import org.springframework.data.annotation.AccessType;
 
 import java.util.logging.Level;
@@ -13,6 +14,7 @@ import java.util.logging.Level;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
